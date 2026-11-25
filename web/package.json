@@ -1,0 +1,25 @@
+{
+  "name": "store-analytics-assistant",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "seed": "node scripts/seed.mjs",
+    "test": "node --experimental-strip-types --test lib/guard.test.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.119.2",
+    "next": "14.2.15",
+    "node-sql-parser": "^5.3.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "better-sqlite3": "^11.3.0",
+    "typescript": "^5.5.4"
+  }
+}
