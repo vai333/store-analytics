@@ -77,7 +77,7 @@ Humans sit at three points: choosing a role, answering clarifying questions, and
 - Tables added in Supabase: `query_cache`, `query_log`, and (if used) `sessions`.
 - Secrets (LLM key, Supabase secret key) live in Vercel environment variables, never in the browser.
 - **How the server reaches Supabase:** with `supabase-js` and the secret key. Queries run through the database function `run_readonly(role, sql, timeout)`, which switches to the role's Postgres user (`SET LOCAL ROLE`), read-only, before running the guarded SELECT. The cache read uses `cache_touch(...)`. Both functions are callable only by the secret key (`supabase/functions.sql`).
-- **LLM:** Gemini models through OpenRouter (`MODEL_SMALL`, `MODEL_BIG` in env).
+- **LLM:** Google Gemini API (`GEMINI_API_KEY`; `MODEL_SMALL`, `MODEL_BIG` in env).
 - **Roles in the database:**
 
 | App role | Postgres access |

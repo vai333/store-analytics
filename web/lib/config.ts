@@ -1,8 +1,8 @@
 const num = (v: string | undefined, d: number) => (v && !Number.isNaN(Number(v)) ? Number(v) : d);
 
 export const CONFIG = {
-  modelSmall: process.env.MODEL_SMALL || "google/gemini-3.5-flash-lite",
-  modelBig: process.env.MODEL_BIG || "google/gemini-3.8-flash",
+  modelSmall: process.env.MODEL_SMALL || "gemini-3.5-flash-lite",
+  modelBig: process.env.MODEL_BIG || "gemini-3.5-flash",
   cacheTtlSeconds: num(process.env.CACHE_TTL_SECONDS, 7200),
   queryTimeoutMs: num(process.env.QUERY_TIMEOUT_MS, 5000),
   maxRows: num(process.env.MAX_ROWS, 50),

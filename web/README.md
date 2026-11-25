@@ -1,13 +1,13 @@
 # Store Analytics Assistant (web)
 
-Next.js 14 app for Vercel. Data, cache and logs live in Supabase Postgres. Gemini models run through OpenRouter. Design: see `../templates/PRD.md` and `../templates/ARCHITECTURE.md`.
+Next.js 14 app for Vercel. Data, cache and logs live in Supabase Postgres. Gemini models run through Google's Gemini API. Design: see `../templates/PRD.md` and `../templates/ARCHITECTURE.md`.
 
 Flow: login (role) -> type in the chat -> cache -> planner (small model, big on failure; may clarify or refuse) -> code guard -> checker -> read-only execute as the role's DB user -> cross-check -> narrator -> answer -> log.
 
 ## Set up
 1. Create a Supabase project. In the SQL editor run `supabase/schema.sql`, then `supabase/roles.sql`.
 2. In the same editor run `supabase/functions.sql` (the `run_readonly` and `cache_touch` functions).
-3. `cp .env.example .env.local` and fill `SUPABASE_URL` (Project Settings > API), `SUPABASE_SECRET_KEY`, `OPENROUTER_API_KEY` and `SESSION_SECRET`.
+3. `cp .env.example .env.local` and fill `SUPABASE_URL` (Project Settings > API), `SUPABASE_SECRET_KEY`, `GEMINI_API_KEY` and `SESSION_SECRET`.
 4. `python ../make_data.py` (builds `../retail.db`), then `npm install && npm run seed`.
 5. `npm run dev`. Run the guard tests with `npm test`.
 
