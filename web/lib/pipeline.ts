@@ -128,7 +128,10 @@ export async function ask({ role, question, turns, mode }: AskInput): Promise<As
   } catch (e) {
     console.error(e);
     await fin({ status: "failed", checker_reason: String((e as Error).message).slice(0, 300) });
-    return { status: "failed", message: "Something went wrong while answering. Please try again." };
+    const m = String((e as Error).message);
+    // Setup problems are safe to show and tell the owner what to fix; anything else stays generic.
+    const setup = /not set|must be set|LLM call failed|Query failed|run_readonly|cache_touch|relation .* does not exist/i.test(m);
+    return { status: "failed", message: setup ? `Setup problem: ${m.slice(0, 220)}` : "Something went wrong while answering. Please try again." };
   }
 }
 

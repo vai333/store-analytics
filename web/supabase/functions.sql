@@ -33,3 +33,9 @@ revoke execute on function run_readonly(text, text, int) from public, anon, auth
 revoke execute on function cache_touch(text, text, int) from public, anon, authenticated;
 grant execute on function run_readonly(text, text, int) to service_role;
 grant execute on function cache_touch(text, text, int) to service_role;
+
+-- The server (secret key = service_role) reads and writes the app tables.
+grant usage on schema public to service_role;
+grant all on stores, products, sales, query_cache, query_log to service_role;
+grant usage, select on all sequences in schema public to service_role;
+notify pgrst, 'reload schema';
